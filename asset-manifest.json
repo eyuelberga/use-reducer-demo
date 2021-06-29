@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/use-reducer-demo/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/use-reducer-demo/static/js/main.b226d7f0.chunk.js",
+    "main.js.map": "/use-reducer-demo/static/js/main.b226d7f0.chunk.js.map",
+    "runtime-main.js": "/use-reducer-demo/static/js/runtime-main.97b07ed9.js",
+    "runtime-main.js.map": "/use-reducer-demo/static/js/runtime-main.97b07ed9.js.map",
+    "static/js/2.aff916e8.chunk.js": "/use-reducer-demo/static/js/2.aff916e8.chunk.js",
+    "static/js/2.aff916e8.chunk.js.map": "/use-reducer-demo/static/js/2.aff916e8.chunk.js.map",
+    "index.html": "/use-reducer-demo/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/use-reducer-demo/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.aff916e8.chunk.js.LICENSE.txt": "/use-reducer-demo/static/js/2.aff916e8.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.97b07ed9.js",
+    "static/js/2.aff916e8.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.b226d7f0.chunk.js"
+  ]
+}
