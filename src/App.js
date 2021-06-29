@@ -1,31 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useReducer, useEffect } from "react";
 import axios from "axios";
 import Todo from "./components/Todo";
-const REQUEST_STATUS = {
-  LOADING: "loading",
-  SUCCESS: "success",
-  ERROR: "error"
-};
+import { REQUEST_STATUS, ACTION } from "./constants";
+import requestReducer from "./reducers/request";
+
 function App() {
-  const [todos, setTodos] = useState([]);
-  const [status, setStatus] = useState(REQUEST_STATUS.LOADING);
-  const [error, setError] = useState(null);
+  const [{ list: todos, status, error }, dispatch] = useReducer(
+    requestReducer,
+    {
+      list: [],
+      status: REQUEST_STATUS.LOADING,
+      error: null
+    }
+  );
   const onCompleteTodoHandler = async todo => {
     const completed = { ...todo, completed: true };
-    const todoIndex = todos.map(({ id }) => id).indexOf(todo.id);
     try {
       await axios.put(
         `https://jsonplaceholder.typicode.com/todos/${todo.id}`,
         completed
       );
-      setTodos([
-        ...todos.slice(0, todoIndex),
-        completed,
-        ...todos.slice(todoIndex + 1)
-      ]);
+      dispatch({
+        type: ACTION.UPDATE_SUCCESS,
+        payload: completed
+      });
     } catch (e) {
-      setError(e);
-      setStatus(REQUEST_STATUS.ERROR);
+      dispatch({
+        type: ACTION.UPDATE_FAILURE,
+        error: e
+      });
     }
   };
   useEffect(() => {
@@ -34,11 +37,15 @@ function App() {
         const response = await axios.get(
           "https://jsonplaceholder.typicode.com/todos"
         );
-        setTodos(response.data);
-        setStatus(REQUEST_STATUS.SUCCESS);
+        dispatch({
+          type: ACTION.FETCH_LIST_SUCCESS,
+          list: response.data
+        });
       } catch (e) {
-        setError(e);
-        setStatus(REQUEST_STATUS.ERROR);
+        dispatch({
+          type: ACTION.FETCH_LIST_FAILURE,
+          error: e
+        });
       }
     };
     fetch();
